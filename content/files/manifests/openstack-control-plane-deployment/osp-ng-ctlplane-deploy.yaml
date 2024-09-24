@@ -148,6 +148,12 @@ spec:
               type: LoadBalancer
       databaseInstance: openstack
       secret: openstack-secret
+  galera:
+    templates:
+      openstack:
+        storageRequest: 500M
+      openstack-cell1:
+        storageRequest: 500M
   memcached:
     templates:
       memcached:

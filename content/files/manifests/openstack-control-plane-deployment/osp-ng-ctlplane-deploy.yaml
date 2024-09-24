@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  secret: openstack-secret
+  secret: osp-secret
   storageClass: ocs-storagecluster-ceph-rbd
   tls:
     podLevel:
@@ -32,7 +32,7 @@ spec:
       route: {}
     template:
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
       cinderAPI:
         override:
           service:
@@ -69,7 +69,7 @@ spec:
       route: {}
     template:
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
       barbicanAPI:
         replicas: 1
         override:
@@ -147,13 +147,17 @@ spec:
             spec:
               type: LoadBalancer
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
   galera:
     templates:
       openstack:
         storageRequest: 500M
+        secret: osp-secret
+        replicas: 3
       openstack-cell1:
         storageRequest: 500M
+        secret: osp-secret
+        replicas: 3
   memcached:
     templates:
       memcached:
@@ -173,7 +177,7 @@ spec:
             spec:
               type: LoadBalancer
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
       networkAttachments:
       - internalapi
   horizon:
@@ -181,7 +185,7 @@ spec:
       route: {}
     template:
       replicas: 1
-      secret: openstack-secret
+      secret: osp-secret
   nova:
     apiOverride:
       route: {}
@@ -233,7 +237,7 @@ spec:
             - internalapi
             - ctlplane
           hasAPIAccess: true
-      secret: openstack-secret
+      secret: osp-secret
   manila:
     enabled: false
     apiOverride:
@@ -288,7 +292,7 @@ spec:
             spec:
               type: LoadBalancer
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
   rabbitmq:
     templates:
       rabbitmq:
@@ -341,7 +345,7 @@ spec:
               spec:
                 type: LoadBalancer
         replicas: 1
-      secret: openstack-secret
+      secret: osp-secret
   ironic:
     enabled: false
     template:
@@ -355,7 +359,7 @@ spec:
         replicas: 1
       ironicNeutronAgent:
         replicas: 1
-      secret: openstack-secret
+      secret: osp-secret
   telemetry:
     enabled: true
     template:
@@ -375,11 +379,11 @@ spec:
           passwordSelectors:
           databaseAccount: aodh
           databaseInstance: openstack
-          secret: openstack-secret
+          secret: osp-secret
         heatInstance: heat
       ceilometer:
         enabled: true
-        secret: openstack-secret
+        secret: osp-secret
       logging:
         enabled: false
         network: internalapi
@@ -417,14 +421,14 @@ spec:
       databaseInstance: openstack
       octaviaAPI:
         replicas: 1
-      secret: openstack-secret
+      secret: osp-secret
   designate:
     enabled: false
     apiOverride:
       route: {}
     template:
       databaseInstance: openstack
-      secret: openstack-secret
+      secret: osp-secret
       designateAPI:
         override:
           service:

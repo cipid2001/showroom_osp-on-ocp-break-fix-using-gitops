@@ -33,12 +33,12 @@ spec:
       edpm-compute-0:
         hostName: edpm-compute-0
         ansible:
-          ansibleHost: 172.22.0.101
+          ansibleHost: 172.22.0.100
         networks:
         - name: ctlplane
           subnetName: subnet1
           defaultRoute: false
-          fixedIP: 172.22.0.101
+          fixedIP: 172.22.0.100
         - name: internalapi
           subnetName: subnet1
         - name: storage
@@ -48,7 +48,7 @@ spec:
         - name: external
           subnetName: subnet1
   nodeTemplate:
-    ansibleSSHPrivateKeySecret: dataplane-ansible-ssh-private-key-secret-edpm
+    ansibleSSHPrivateKeySecret: dataplane-ansible-ssh-private-key-secret
     ansible:
       ansibleUser: root
       ansibleVarsFrom:
